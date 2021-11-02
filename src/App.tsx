@@ -1,11 +1,13 @@
 import React from "react";
 import "./App.css";
 import { TestComp } from "./Test";
+import { MainMenu } from "./MainMenu";
 
 function App() {
     return (
         <div className="App">
-            <TestComp />
+            {/*<TestComp />*/}
+            <MainMenu />
         </div>
     );
 }

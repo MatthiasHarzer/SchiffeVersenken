@@ -98,9 +98,7 @@ export class TestComp extends Component<ITestProps, ITestState>{
         }
 
         const ship = [
-            [1,0],
-            [2,0],
-            [3,0]
+            [1,0]
         ]
     }
 
