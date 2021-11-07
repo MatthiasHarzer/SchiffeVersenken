@@ -3,6 +3,7 @@ import "./MainMenu.css";
 import { network } from "./network";
 
 export class MainMenu extends Component<any, any> {
+    ellipsesTimer: NodeJS.Timeout | undefined;
 
     componentDidMount() {
         this.setState({ name: localStorage.getItem("user_name") });
@@ -12,6 +13,26 @@ export class MainMenu extends Component<any, any> {
             this.setState({ logged_in: true });
             this.setUserName(this.state.name);
         });
+        network.onReceive("SERVER_CONNECT", ()=>{
+            this.setState({server_connected: true});
+            if (this.ellipsesTimer) {
+                clearInterval(this.ellipsesTimer);
+            }
+        })
+
+        let dots = ""
+        this.ellipsesTimer = setInterval(() => {
+            dots += ".";
+            if (dots.length > 4) {
+                dots = ".";
+            }
+            this.setState({ ellipses_render: dots });
+        }, 500);
+    }
+    componentWillUnmount() {
+        if (this.ellipsesTimer) {
+            clearInterval(this.ellipsesTimer);
+        }
     }
 
     setUserName = (name: string) => {
@@ -45,6 +66,8 @@ export class MainMenu extends Component<any, any> {
                 <div className={"bg"}>
                     <h1 className={"bg-header"}>{Array(100).fill("Schiffe Versenken ").map(r=>(<span style={{fontSize: Math.random()*120 + 15}}>{r}</span>))}</h1>
                     <div className={"menu"}>
+                        {this.state?.server_connected ?
+                            <>
                         <div className={"login combo"}>
                             <input type={"text"} onKeyDown={(e) => {
                                 if (e.key === "Enter") {
@@ -65,6 +88,12 @@ export class MainMenu extends Component<any, any> {
                                 <button onClick={this.joinMatch}>Join</button>
                             </div>
                         </div>
+                            </> : <>
+                                <div className={"loading"}>
+                                    <div className="loader"/>
+                                    <span>Connecting to server{this.state?.ellipses_render}</span>
+                                </div>
+                            </> }
                     </div>
                 </div>
             </>
