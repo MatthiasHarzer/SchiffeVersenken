@@ -1,13 +1,13 @@
 import React from "react";
 import "./App.css";
-import { TestComp } from "./Test";
-import { MainMenu } from "./MainMenu";
+import GameComponent from "./game/GameComponent";
 
 function App() {
     return (
         <div className="App">
+            {<GameComponent/>}
             {/*<TestComp />*/}
-            <MainMenu />
+            {/* <MainMenu />*/}
         </div>
     );
 }

@@ -1,9 +1,9 @@
-.hidden{
+.hidden {
     display: none;
 }
 
 
-.bg{
+.bg {
     position: absolute;
     top: 0;
     left: 0;
@@ -14,7 +14,8 @@
     align-items: center;
     overflow: hidden;
 }
-.bg-header{
+
+.bg-header {
     position: absolute;
     z-index: 1;
     color: #4e4e4e;
@@ -26,8 +27,15 @@
     transform: rotate(14deg);
     font-size: 15px;
 
+    -webkit-touch-callout: none; /* iOS Safari */
+    -webkit-user-select: none; /* Safari */
+    -khtml-user-select: none; /* Konqueror HTML */
+    -moz-user-select: none; /* Firefox */
+    -ms-user-select: none; /* Internet Explorer/Edge */
+    user-select: none;
 }
-.menu{
+
+.menu {
     z-index: 2;
     background-color: var(--theme-color);
     border-radius: 10px;
@@ -35,7 +43,8 @@
     10px 18px 10px 0 rgba(0, 0, 0, 0.19);
     padding: 25px;
 }
-input[type=text]{
+
+input[type=text] {
     color: white;
     border: none;
     border-radius: 3px;
@@ -47,10 +56,12 @@ input[type=text]{
     6px 10px 10px 0 rgba(0, 0, 0, 0.19);
 
 }
-input[type=text]::placeholder{
+
+input[type=text]::placeholder {
     color: darkgrey;
 }
-button{
+
+button {
     color: white;
     font-size: 22px;
     border: none;
@@ -62,37 +73,42 @@ button{
     6px 10px 10px 0 rgba(0, 0, 0, 0.19);
 }
 
-.combo{
+.combo {
     display: flex;
     flex-flow: row;
     align-items: center;
     width: 100%;
 }
-.combo input{
+
+.combo input {
     flex: 0 1 auto;
 }
-.combo button{
+
+.combo button {
     flex: 1 1 auto;
     margin-left: 3px;
 
 }
 
-.combo.join input{
+.combo.join input {
 
 }
 
-.game-select{
+.game-select {
     margin-top: 30px;
 }
-.game-select h3{
+
+.game-select h3 {
     color: white;
     font-size: 22px;
 }
-.game-select .host{
+
+.game-select .host {
     width: 100%;
     margin-bottom: 10px;
 }
-.game-select .host button{
+
+.game-select .host button {
     background-color: #0bc460;
     width: 100%;
 
@@ -100,13 +116,14 @@ button{
 
 /* NOT CONNECTED */
 
-.loading{
+.loading {
     display: flex;
     align-items: center;
     justify-content: center;
     color: white;
 }
-.loading span{
+
+.loading span {
     font-size: 23px;
     margin-left: 15px;
 }

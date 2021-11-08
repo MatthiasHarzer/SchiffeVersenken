@@ -1,0 +1,18 @@
+.grid {
+    width: 1200px;
+    max-width: 95%;
+    background-color: #0bc460;
+    margin-bottom: 40px;
+}
+
+.grid-container {
+    display: grid;
+    justify-content: space-evenly;
+    width: 80%;
+    height: 60%;
+}
+
+.grid-canvas{
+    background-color: #bd0066;
+    height: 300px;
+}

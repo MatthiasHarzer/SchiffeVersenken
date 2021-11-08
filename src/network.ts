@@ -1,5 +1,5 @@
 // tmep
-const server_ip = "ws:\\127.0.0.1:4269";
+const server_ip = "ws:\\45.155.173.240:4269"
 
 const random_string = () => {
     return (Math.random() + 1).toString(36).substring(7);
