@@ -3,7 +3,17 @@
 
 }
 
-
+button{
+  color: white;
+  font-size: 22px;
+  border: none;
+  border-radius: 3px;
+  background-color: #bd0066;
+  padding: 10px 15px;
+  cursor: pointer;
+  box-shadow: 0 10px 15px 0 rgba(0, 0, 0, 0.2),
+  6px 10px 10px 0 rgba(0, 0, 0, 0.19);
+}
 
 
 .bg{
