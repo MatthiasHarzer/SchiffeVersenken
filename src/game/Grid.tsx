@@ -1,14 +1,14 @@
-import {Component} from "react";
+import React, {Component, RefObject} from "react";
 import "../MainMenu.css"; //TODO
 import "./Grid.css";
 
-type GridProps = {
+type IGridProps = {
     x: number,
     y: number,
     title: string
 };
 
-class Grid extends Component<GridProps> {
+class Grid extends Component<IGridProps> {
 
     static defaultProps = {
         x: 10,
@@ -16,14 +16,21 @@ class Grid extends Component<GridProps> {
         title: "Dein Feld"
     }
 
-    constructor(props: GridProps) {
+    private readonly canvasRef: RefObject<any>;
+
+    constructor(props: IGridProps) {
         super(props);
+
+        this.canvasRef = React.createRef();
+    }
+
+    componentDidMount() {
     }
 
     render() {
         return <div className={"grid"}>
             <h1>{this.props.title}</h1>
-            <canvas className={"grid-canvas"}/>
+            <canvas ref={this.canvasRef} className={"grid-canvas"}/>
         </div>;
     }
 }
