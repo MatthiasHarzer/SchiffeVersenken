@@ -1,21 +1,45 @@
 // tmep
 const server_ip = "ws:\\45.155.173.240:4269"
+import isDev, { crackWSAddress, random_string, validateIPTemplate } from "./util";
 
-const random_string = () => {
-    return (Math.random() + 1).toString(36).substring(7);
-};
+const OVERRIDE_IS_DEV = false;   // true = dont use isDev || false = use isDev
+
+const DEFAULT_IP_ADDRESS_TEMPLATE = localStorage.getItem("server_ip") || "192.168.0";
+const localDevServerIP = "127.0.0.1";
+const PORT = 4269;
+
+
 
 
 class Network {
-    private ws: WebSocket;
+    private ws: WebSocket | undefined;
     private mid_cb: Map<string, (state: string) => void> = new Map<string, (state: string) => void>();
     private callbacks: Map<string, Array<any>> = new Map<string, Array<any>>();
 
+
     constructor() {
-        this.ws = new WebSocket(server_ip);
-        this.ws.onmessage = this.wsReceive;
-        this.ws.onopen = this.wsConnected;
+        if(isDev() && !OVERRIDE_IS_DEV){
+            this.connect(localDevServerIP);
+        }else{
+            this.connect(DEFAULT_IP_ADDRESS_TEMPLATE);
+        }
     }
+
+    private connect = async (ip: string) => {
+        if(this.ws){
+            this.ws.close();
+            this.dispatchEvent("SERVER_DISCONNECT");
+        }
+
+        let wsAddress = ip.split(".").length >= 4 ? `ws:\\${ip}:${PORT}` : await crackWSAddress(ip, PORT);
+
+        if(!wsAddress){
+            return
+        }
+        this.ws = new WebSocket(wsAddress);
+        this.ws.onopen = this.wsConnected
+        this.ws.onmessage = this.wsReceive;
+    };
 
     private wsReceive = (event: any) => {
         const data = JSON.parse(event.data);
@@ -35,7 +59,16 @@ class Network {
         }
     };
 
-    createGame = (): Promise<string> => new Promise((res, rej) => {
+    findServerByIP = (ip: string) =>{
+        if(validateIPTemplate(ip)){
+            localStorage.setItem("server_ip", ip);
+            this.connect(ip);
+        }else{
+            alert("Invalid IP Address: " + ip);
+        }
+    }
+
+    createGame = (): Promise<string> => new Promise((res) => {
         const mid = random_string();
         const data = {
             type: "CREATE",
@@ -48,7 +81,7 @@ class Network {
         this.sendData(data);
     });
 
-    joinGame = (gameId: string): Promise<string> => new Promise((res, rej) => {
+    joinGame = (gameId: string): Promise<string> => new Promise((res) => {
         const mid = random_string();
         const data = {
             type: "JOIN",
@@ -64,7 +97,10 @@ class Network {
         this.sendData(data);
     });
     sendData = (data: {}) => {
-        this.ws.send(JSON.stringify(data));
+        if (this.ws) {
+            this.ws.send(JSON.stringify(data));
+        }
+
     };
     onReceive = (type_: string, callback: (data: any) => any) => {
         let cbs = this.callbacks.get(type_) || [];

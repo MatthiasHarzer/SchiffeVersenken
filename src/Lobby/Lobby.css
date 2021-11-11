@@ -1,0 +1,62 @@
+.lobby{
+
+    background-color: var(--theme-color);
+    border-radius: 10px;
+    box-shadow: 0 10px 15px 0 rgba(0, 0, 0, 0.2),
+    10px 18px 10px 0 rgba(0, 0, 0, 0.19);
+    padding: 35px;
+
+}
+.info{
+    display: flex;
+    flex-flow: row;
+
+}
+.info > *{
+    margin: 0 10px;
+}
+.lobby h1{
+    display: flex;
+    flex-flow: row;
+    justify-content: center;
+    align-items: center;
+}
+.lobby h1 img{
+    width: 22px;
+    height: 22px;
+
+    margin-left: 10px;
+}
+.connected-players{
+    background-color: rgba(32, 32, 32, 0.25);
+    padding: 10px;
+    border-radius: 10px;
+
+}
+.connected-players h3{
+    margin: 10px 0;
+    text-decoration: underline;
+
+    /*font-weight: normal;*/
+}
+
+.connected-players ul{
+    list-style: none;
+    padding: 0;
+}
+.connected-players ul li.me{
+    /*text-decoration: underline;*/
+}
+.connected-players ul li.me::before{
+    content: "(You) ";
+    /*text-decoration: transparent !important;*/
+    font-style: italic;
+}
+
+.host-controls{
+    display: flex;
+    flex-flow: column;
+}
+.host-controls .start-btn{
+    margin-top: 15px;
+}

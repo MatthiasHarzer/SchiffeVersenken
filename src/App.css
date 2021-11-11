@@ -3,3 +3,57 @@
 
 }
 
+button{
+  color: white;
+  font-size: 22px;
+  border: none;
+  border-radius: 3px;
+  background-color: #bd0066;
+  padding: 10px 15px;
+  cursor: pointer;
+  box-shadow: 0 10px 15px 0 rgba(0, 0, 0, 0.2),
+  6px 10px 10px 0 rgba(0, 0, 0, 0.19);
+}
+
+
+.bg{
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100vh;
+  width: 100vw;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+}
+.bg-header{
+  position: absolute;
+  color: #4e4e4e;
+  top: -30px;
+  left: -250px;
+  width: 200%;
+  height: 140%;
+  text-align: center;
+  transform: rotate(14deg);
+  font-size: 15px;
+
+}
+.content{
+  color: white;
+  position: absolute;
+
+  top: 0;
+  left: 0;
+  height: 100vh;
+  width: 100vw;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1;
+}
+
+.content *::selection{
+  background: #cc3a24;
+  color: white;
+}
