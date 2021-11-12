@@ -1,5 +1,5 @@
 import React, {Component, RefObject} from "react";
-import "../MainMenu.css"; //TODO
+// import "../MainMenu.css"; //TODO
 import "./Grid.css";
 
 type IGridProps = {

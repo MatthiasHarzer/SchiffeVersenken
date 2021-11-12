@@ -1,5 +1,6 @@
 import {Component} from "react";
-import "../MainMenu.css";    //TODO
+// import "../MainMenu.css";    //TODO
+
 import "./Grid.css";
 import Grid from "./Grid";
 
@@ -10,8 +11,8 @@ class GameComponent extends Component {
     }
 
     render() {
-        return <div className={"bg"}>
-            <div className={"menu grid-container"}>
+        return <div className={"fullscreen-center"}>
+            <div className={"content grid-container"}>
                 <Grid x={10} y={10} title={"Dein Feld"}/>
                 <Grid x={10} y={10} title={"Feindliches Feld"}/>
             </div>

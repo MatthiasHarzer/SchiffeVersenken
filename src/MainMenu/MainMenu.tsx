@@ -77,7 +77,7 @@ export class MainMenu extends Component<any, any> {
     render() {
         return (
             <>
-                <div className={"bg"}>
+                <div className={"main-menu"}>
                     <div className={"ip-address-template-input"}>
                         <input type={"text"} defaultValue={localStorage.getItem("server_ip")||""} onKeyDown={(e) => {
                             if (e.key === "Enter") {
@@ -88,7 +88,7 @@ export class MainMenu extends Component<any, any> {
                         />
                     </div>
                     {/*<h1 className={"bg-header"}>{Array(100).fill("Schiffe Versenken ").map(r=>(<span style={{fontSize: Math.random()*120 + 15}}>{r}</span>))}</h1>*/}
-                    <div className={"menu"}>
+                    <div className={"content"}>
                         {this.state?.server_connected ?
                             <>
                                 <div className={"login combo"}>

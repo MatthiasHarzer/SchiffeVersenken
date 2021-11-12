@@ -4,7 +4,7 @@ import isDev, { crackWSAddress, random_string, validateIPTemplate } from "./util
 const OVERRIDE_IS_DEV = false;   // true = dont use isDev || false = use isDev
 
 const DEFAULT_IP_ADDRESS_TEMPLATE = localStorage.getItem("server_ip") || "192.168.0";
-const localDevServerIP = "45.155.173.240";
+const localDevServerIP = "127.0.0.1";
 const PORT = 4269;
 
 class Network {

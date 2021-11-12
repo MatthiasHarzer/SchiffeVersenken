@@ -5,6 +5,7 @@ import { game } from "../game";
 import { copyToClipboard } from "../util";
 // @ts-ignore
 import copy from "../imgs/copy.png";
+import back from "../imgs/back.png";
 
 export class Lobby extends Component<any, any> {
 
@@ -21,13 +22,26 @@ export class Lobby extends Component<any, any> {
             });
         });
     }
+    leaveGame = ()=> {
+        network.sendData({
+            type: "LEAVE"
+        });
+
+        this.props.onLeaveGame();
+    }
 
     render() {
         return (
             <>
                 <div className={"lobby"}>
-                    <h1>Lobby Code: {this.state?.gameID} <img src={copy} alt={"/"}
-                                                              onClick={() => copyToClipboard(game.id)} /></h1>
+                    <button className={"clear-btn back-btn"} onClick={this.leaveGame}>
+                        <img src={back} alt={"<-"} />
+                    </button>
+                    <h1>Lobby Code: {this.state?.gameID}
+                        <button className={"clear-btn"} title={"Copy to clipboard"}
+                                onClick={() => copyToClipboard(game.id)}><img src={copy} alt={"/"}
+                        /></button>
+                    </h1>
                     <div className={"info"}>
                         <div className={"connected-players"}>
                             <h3>Connected players:</h3>
@@ -43,17 +57,17 @@ export class Lobby extends Component<any, any> {
                         </div>
                         {this.state?.isHost &&
                         <div className={"host-controls"}>
-                            <div>
-                              <h3>Settings</h3>
-                              <p>(Coming soon)</p>
-                            </div>
-                              <button onClick={() => {
-                                  network.sendData({
-                                      type: "GAME_STATE",
-                                      state: "PLACE"
-                                  });
-                              }} className={"start-btn"}>Start Game
-                              </button>
+                          <div>
+                            <h3>Settings</h3>
+                            <p>(Coming soon)</p>
+                          </div>
+                          <button onClick={() => {
+                              network.sendData({
+                                  type: "GAME_STATE",
+                                  state: "PLACE"
+                              });
+                          }} className={"start-btn"}>Start Game
+                          </button>
                         </div>
                         }
 
