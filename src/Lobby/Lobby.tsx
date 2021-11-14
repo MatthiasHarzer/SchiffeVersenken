@@ -21,6 +21,7 @@ export class Lobby extends Component<any, any> {
                 playerNr: data?.playerNr
             });
         });
+        network.onReceive("KICK", this.leaveGame)
     }
     leaveGame = ()=> {
         network.sendData({
@@ -49,7 +50,7 @@ export class Lobby extends Component<any, any> {
                                 {this.state?.players?.map((player?: string, index?: number) => {
                                     return (
                                         <li key={index} className={index === this.state?.playerNr ? "me" : ""}>
-                                            {player} ({index})
+                                            {player}
                                         </li>
                                     );
                                 })}

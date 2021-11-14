@@ -3,7 +3,7 @@ import isDev, { crackWSAddress, random_string, validateIPTemplate } from "./util
 
 const OVERRIDE_IS_DEV = false;   // true = dont use isDev || false = use isDev
 
-const DEFAULT_IP_ADDRESS_TEMPLATE = localStorage.getItem("server_ip") || "192.168.0";
+const DEFAULT_IP_ADDRESS_TEMPLATE = localStorage.getItem("server_ip") || "192.168.0"; // = IP to connect to when in production
 const localDevServerIP = "127.0.0.1";
 const PORT = 4269;
 
@@ -48,12 +48,17 @@ class Network {
     };
     private wsConnected = () => {
         this.dispatchEvent("SERVER_CONNECT");
+        if(this.queue.length > 0){
+            this.queue.forEach(data => this.sendData(data));
+            this.queue = [];
+        }
     };
     private dispatchEvent = (eventName?: string, eventData?: any) => {
         if (eventName != null) {
             this.callbacks.get(eventName)?.forEach(cb => cb(eventData !== null ? eventData : {}));
         }
     };
+    private queue: Array<{}> = [];
 
     findServerByIP = (ip: string) =>{
         if(validateIPTemplate(ip)){
@@ -93,8 +98,10 @@ class Network {
         this.sendData(data);
     });
     sendData = (data: {}) => {
-        if (this.ws) {
+        if (this.ws?.OPEN && !this.ws?.CONNECTING) {
             this.ws.send(JSON.stringify(data));
+        }else{
+            this.queue.push(data)
         }
 
     };

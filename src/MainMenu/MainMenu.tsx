@@ -16,6 +16,13 @@ export class MainMenu extends Component<any, any> {
         network.onReceive("SERVER_CONNECT", () => {
             this.setState({ server_connected: true });
 
+            if (localStorage.getItem("user_name")){
+                network.sendData({
+                    type: "LOGIN",
+                    name: localStorage.getItem("user_name")
+                });
+            }
+
         });
         network.onReceive("SERVER_DISCONNECT", () => {
             this.setState({ server_connected: false });
@@ -30,6 +37,8 @@ export class MainMenu extends Component<any, any> {
             }
             this.setState({ ellipses_render: dots });
         }, 500);
+
+
     }
 
     componentWillUnmount() {
