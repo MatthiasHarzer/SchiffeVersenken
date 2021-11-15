@@ -1,6 +1,7 @@
 import React, {Component, RefObject} from "react";
 // import "../MainMenu.css"; //TODO
 import "./Grid.css";
+import {gameLoop} from "./GameLoop";
 
 type IGridProps = {
     x: number,
@@ -25,6 +26,50 @@ class Grid extends Component<IGridProps> {
     }
 
     componentDidMount() {
+        gameLoop.start();
+
+        const canvas = this.canvasRef.current;
+        const ctx = canvas.getContext("2d");
+        this.drawGrid(ctx, 10);
+
+        gameLoop.injectCallback(() => {
+            //ctx.clearRect(0, 0, ctx.canvas.width, ctx.canvas.height);
+            //this.drawGrid(ctx, 10);
+        });
+    }
+
+    drawGrid(ctx: any, fields: number) {
+        const width = ctx.canvas.width;
+        const height = ctx.canvas.height;
+
+        const wPx = width / fields;
+        const wPy = height / fields;
+
+        ctx.beginPath();
+
+        for (let x = wPx; x <= width; x += wPx) {
+            if (x >= width) {
+                continue;
+            }
+
+            ctx.moveTo(x, 0);
+            ctx.lineTo(x, height);
+        }
+
+        for (let y = wPy; y <= height; y += wPy) {
+            if (y >= height) {
+                continue;
+            }
+            ctx.moveTo(width, y);
+            ctx.lineTo(0, y);
+        }
+
+        ctx.strokeStyle = 'rgb(255,255,255)';
+        ctx.stroke();
+    }
+
+    componentWillUnmount() {
+        gameLoop.ejectCallbacks();
     }
 
     render() {
