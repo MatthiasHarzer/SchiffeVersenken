@@ -21,15 +21,16 @@ export class Lobby extends Component<any, any> {
                 playerNr: data?.playerNr
             });
         });
-        network.onReceive("KICK", this.leaveGame)
+        network.onReceive("KICK", this.leaveGame);
     }
-    leaveGame = ()=> {
+
+    leaveGame = () => {
         network.sendData({
             type: "LEAVE"
         });
 
         this.props.onLeaveGame();
-    }
+    };
 
     render() {
         return (
@@ -50,27 +51,42 @@ export class Lobby extends Component<any, any> {
                                 {this.state?.players?.map((player?: string, index?: number) => {
                                     return (
                                         <li key={index} className={index === this.state?.playerNr ? "me" : ""}>
-                                            {player}
+                                            <span>
+                                                 {player}
+                                            </span>
+                                            {(this.state?.isHost && index !== this.state?.playerNr) ?
+                                                <button className={"clear-btn kick-btn"}
+                                                        onClick={() => network.sendData({
+                                                            type: "KICK",
+                                                            playerNr: index
+                                                        })}>
+                                                    Kick
+                                                </button> : null}
                                         </li>
                                     );
                                 })}
                             </ul>
                         </div>
-                        {this.state?.isHost &&
-                        <div className={"host-controls"}>
-                          <div>
-                            <h3>Settings</h3>
-                            <p>(Coming soon)</p>
-                          </div>
-                          <button onClick={() => {
-                              network.sendData({
-                                  type: "GAME_STATE",
-                                  state: "PLACE"
-                              });
-                          }} className={"start-btn"}>Start Game
-                          </button>
+                        <div className={"settings"}>
+                            <div>
+                                <h3>Settings</h3>
+                                <p>(Coming soon)</p>
+
+                            </div>
+
+                            {this.state?.isHost &&
+                                <div className={"host-controls"}>
+                                  <button disabled={this.state?.players?.length < 2} onClick={() => {
+                                      network.sendData({
+                                          type: "GAME_STATE",
+                                          state: "PLACE"
+                                      });
+                                  }} className={"start-btn"}>Start Game
+                                  </button>
+                                </div>
+                            }
                         </div>
-                        }
+
 
                     </div>
                 </div>

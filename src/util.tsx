@@ -1,13 +1,8 @@
 import React from "react";
 
-export const copyToClipboard = (content: string | undefined) => {
+export const copyToClipboard = async(content: string | undefined) => {
     if (!content) return;
-    const el = document.createElement("textarea");
-    el.value = content;
-    document.body.appendChild(el);
-    el.select();
-    document.execCommand("copy");
-    document.body.removeChild(el);
+    await navigator.clipboard.writeText(content)
 };
 export const random_string = () => {
     return (Math.random() + 1).toString(36).substring(7);

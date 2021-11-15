@@ -51,6 +51,7 @@
     background-color: rgba(32, 32, 32, 0.25);
     padding: 10px;
     border-radius: 10px;
+    max-width: 250px;
 
 }
 .lobby .connected-players h3{
@@ -64,16 +65,40 @@
     list-style: none;
     padding: 0;
 }
+.lobby .connected-players ul li{
+    display: flex;
+    flex-flow: row;
+    justify-content: center;
+    align-items: center;
+    margin: 10px 0;
+}
+.lobby .connected-players ul li span{
+    flex: 0 1 auto;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+.lobby .connected-players ul li button{
+    box-shadow: none;
+    padding: 5px 10px;
+    font-size: 13px;
+    background-color: rgba(35, 35, 35, 0.64);
+    border-radius: 3px;
+    margin-left: 10px;
+
+}
 .lobby .connected-players ul li.me{
     /*text-decoration: underline;*/
 }
 .lobby .connected-players ul li.me::before{
-    content: "(You) ";
+    content: "(You)";
     /*text-decoration: transparent !important;*/
     font-style: italic;
+    color: #868686;
+    margin-right: 5px;
 }
 
-.lobby .host-controls{
+.lobby .settings{
     display: flex;
     flex-flow: column;
 }

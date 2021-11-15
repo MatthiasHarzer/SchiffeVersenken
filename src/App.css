@@ -2,7 +2,9 @@
     background: #cc3a24;
     color: white;
 }
-
+*{
+    transition: background-color 0.3s ease-in-out;
+}
 
 .app {
     text-align: center;
@@ -21,6 +23,10 @@ button{
     cursor: pointer;
     box-shadow: 0 10px 15px 0 rgba(0, 0, 0, 0.2),
     6px 10px 10px 0 rgba(0, 0, 0, 0.19);
+}
+button:disabled{
+    background-color: #575757;
+    cursor: not-allowed;
 }
 
 button.clear-btn{
