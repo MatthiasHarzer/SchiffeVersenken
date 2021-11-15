@@ -1,13 +1,8 @@
 .lobby{
 
-    background-color: var(--theme-color);
-    border-radius: 10px;
-    box-shadow: 0 10px 15px 0 rgba(0, 0, 0, 0.2),
-    10px 18px 10px 0 rgba(0, 0, 0, 0.19);
-    padding: 35px;
     position: relative;
 
-
+    padding: 40px;
 }
 .lobby .back-btn{
     padding: 0;
@@ -26,16 +21,21 @@
 .lobby .info{
     display: flex;
     flex-flow: row;
+    align-items: center;
+    justify-content: center;
 
 }
 .lobby .info > *{
     margin: 0 10px;
+
 }
 .lobby h1{
     display: flex;
     flex-flow: row;
     justify-content: center;
     align-items: center;
+    font-size: 250%;
+    margin: 0 0 35px 0;
 }
 .lobby h1 button{
     box-shadow: none;
@@ -48,6 +48,7 @@
 
 }
 .lobby .connected-players{
+    flex: 0 1 auto;
     background-color: rgba(32, 32, 32, 0.25);
     padding: 10px;
     border-radius: 10px;
@@ -98,10 +99,41 @@
     margin-right: 5px;
 }
 
-.lobby .settings{
-    display: flex;
-    flex-flow: column;
-}
 .lobby .host-controls .start-btn{
     margin-top: 15px;
+    position: relative;
+
+}
+
+.lobby .settings{
+    flex: 1 1 auto;
+    display: flex;
+    flex-flow: column;
+    /*width: 50%;*/
+    margin: 0 10px 30px 10px;
+}
+
+.lobby .settings h2{
+    margin: 5px;
+    font-size: 170%;
+}
+.lobby .settings-categories{
+    text-align: left;
+}
+.lobby .settings-categories h3{
+    font-size: 130%;
+    font-weight: normal;
+    margin: 0;
+    text-decoration: underline;
+}
+.lobby .settings-inner{
+    background-color: rgba(18,18,18,0.14);
+    padding: 5px;
+    border-radius: 5px;
+    width: 100%;
+    height: 100%;
+}
+.lobby .settings-inner ul li{
+    margin: 0 0 15px 0;
+    text-align: center;
 }

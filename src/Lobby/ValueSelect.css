@@ -1,0 +1,37 @@
+.value-select{
+    display: inline-block;
+    position: relative;
+    width: 100%;
+}
+.value-select label{
+    display: block;
+    margin-bottom: 5px;
+    text-align: left;
+    padding-left: 15%;
+}
+.value-select div{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.value-select div span{
+    margin: 0 10px;
+    font-weight: bold;
+    font-size: 18px;
+}
+.value-select div button{
+    box-shadow: none;
+    background-color: #393939;
+    border-radius: 100px;
+    width: 30px;
+    height: 30px;
+    padding: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+}
+.value-select div button img{
+    width: 12px;
+    height: 12px;
+}

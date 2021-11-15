@@ -70,7 +70,8 @@ export default class App extends Component<any, any> {
                 {/*    <Background />*/}
                 {/*</div>*/}
                 <h1 className={"background-text"}>{Array(100).fill("Schiffe Versenken ").map((r, i) => (
-                    <span key={i} style={{ fontSize: Math.random() * 120 + 15 }}>{r}</span>))}</h1>
+                    <span key={i} style={{ fontSize: Math.random() * 120 + 15 }}>{r}</span>))}
+                </h1>m
 
                 {/*<div className={"content"}>*/}
                     <div hidden={this.state?.currentTab !== "MAIN_MENU"}>
