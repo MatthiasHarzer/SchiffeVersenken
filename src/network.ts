@@ -97,6 +97,15 @@ class Network {
 
         this.sendData(data);
     });
+    send = (type: string, data: {}) =>{
+        const mid = random_string();
+        const sendData = {
+            ...data,
+            type: type,
+            mid: mid
+        };
+        this.sendData(sendData);
+    }
     sendData = (data: {}) => {
         if (this.ws?.OPEN && !this.ws?.CONNECTING) {
             this.ws.send(JSON.stringify(data));

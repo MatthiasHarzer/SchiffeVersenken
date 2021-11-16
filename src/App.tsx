@@ -8,6 +8,7 @@ import { Lobby } from "./Lobby/Lobby";
 import GameComponent from "./game/GameComponent";
 
 import { EndScreen } from "./end/EndScreen";
+import { Chat } from "./chat/Chat";
 
 export default class App extends Component<any, any> {
 
@@ -31,15 +32,19 @@ export default class App extends Component<any, any> {
                 this.setState({ currentTab: "PLACE" });
             }
 
-            if(["W1", "W0"].includes(data?.state)){
+            if (["W1", "W0"].includes(data?.state)) {
                 let playerWin = Number(data?.state[1]);
                 let playerLose = 1 - playerWin;
-                let isWin = this.state?.playerNr === playerWin
-                this.setState({ win: isWin, winnerName: this.state?.players[playerWin], loserName: this.state?.players[playerLose], currentTab: "END" });
+                let isWin = this.state?.playerNr === playerWin;
+                this.setState({
+                    win: isWin,
+                    winnerName: this.state?.players[playerWin],
+                    loserName: this.state?.players[playerLose],
+                    currentTab: "END"
+                });
 
             }
         });
-
 
 
     }
@@ -52,15 +57,16 @@ export default class App extends Component<any, any> {
             this.setState({ currentTab: "LOBBY" });
         }
     }
+
     onLeaveGame() {
         this.setState({ currentTab: "MAIN_MENU" });
     }
 
-    onEndClicked = () =>{
+    onEndClicked = () => {
         this.setState({ currentTab: "MAIN_MENU" });
 
 
-    }
+    };
 
 
     render() {
@@ -74,25 +80,29 @@ export default class App extends Component<any, any> {
                 </h1>m
 
                 {/*<div className={"content"}>*/}
-                    <div hidden={this.state?.currentTab !== "MAIN_MENU"}>
-                        <MainMenu onGameConnected={this.onGameConnected.bind(this)} />
-                    </div>
+                <div hidden={this.state?.currentTab !== "MAIN_MENU"}>
+                    <MainMenu onGameConnected={this.onGameConnected.bind(this)} />
+                </div>
 
-                    <div hidden={this.state?.currentTab !== "LOBBY"}>
-                        <Lobby onLeaveGame={this.onLeaveGame.bind(this)} />
-                    </div>
+                <div hidden={this.state?.currentTab !== "LOBBY"}>
+                    <Lobby onLeaveGame={this.onLeaveGame.bind(this)} />
+                </div>
 
-                    <div hidden={this.state?.currentTab !== "PLACE"}>
-                        <GameComponent />
-                    </div>
+                <div hidden={this.state?.currentTab !== "PLACE"}>
+                    <GameComponent />
+                </div>
 
-                    <div hidden={this.state?.currentTab !== "BOMB"}>
-                        {/*  TODO*/}
-                    </div>
+                <div hidden={this.state?.currentTab !== "BOMB"}>
+                    {/*  TODO*/}
+                </div>
 
-                    <div hidden={this.state?.currentTab !== "END"}>
-                        <EndScreen type={this.state?.win ? "WIN" : "LOSE"} loserName={this.state?.loserName} winnerName={this.state?.winnerName} onClick={this.onEndClicked.bind(this)}/>
-                    </div>
+                <div hidden={this.state?.currentTab !== "END"}>
+                    <EndScreen type={this.state?.win ? "WIN" : "LOSE"} loserName={this.state?.loserName}
+                               winnerName={this.state?.winnerName} onClick={this.onEndClicked.bind(this)} />
+                </div>
+                <div hidden={!["LOBBY", "PLACE", "BOMB", "END"].includes(this.state?.currentTab)}>
+                    <Chat />
+                </div>
                 {/*</div>*/}
             </div>
         );

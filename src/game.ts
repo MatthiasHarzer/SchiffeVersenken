@@ -6,6 +6,8 @@ class Game{
 
     id?: string
     state?: string
+    players?: Array<string>
+    playerNr?: number
 
     setID(id: string){
         this.id = id;
@@ -14,6 +16,15 @@ class Game{
 
     setState(state: string){
         this.state = state;
+        this.change();
+    }
+
+    setPlayers(players: Array<string>){
+        this.players = players;
+        this.change();
+    }
+    setPlayerNr(playerNr: number){
+        this.playerNr = playerNr;
         this.change();
     }
 

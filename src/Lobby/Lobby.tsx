@@ -81,6 +81,8 @@ export class Lobby extends Component<any, IState> {
                 players: data?.player,
                 playerNr: data?.playerNr
             });
+            game.setPlayers(data?.player);
+            game.setPlayerNr(data?.playerNr);
         });
         network.onReceive("KICK", this.leaveGame);
 

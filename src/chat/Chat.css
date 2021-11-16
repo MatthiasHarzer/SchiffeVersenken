@@ -1,0 +1,102 @@
+.chat{
+    --chat-bg: rgb(51, 51, 51);
+    z-index: 10;
+    position: fixed;
+    right: 10px;
+
+    background-color: var(--chat-bg);
+    width: 400px;
+    height: 500px;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+    bottom: -460px;
+    transition: bottom 0.3s ease-in-out;
+    padding: 0;
+    display: flex;
+    flex-flow: column;
+}
+.chat.chat-open{
+    bottom: 0;
+}
+.chat .header button{
+    /*height: 20px;*/
+    margin: 5px;
+    font-size: 14px;
+    padding: 4px;
+    width: 200px;
+    box-shadow: none;
+}
+
+.chat .chat-messages{
+    flex: 1 1 auto;
+    overflow-y: scroll;
+    display: flex;
+    flex-flow: column;
+    align-items: center;
+
+    position: relative;
+}
+.chat .chat-messages .top-fade{
+    content:'abc';
+    /*margin-top: -100px;*/
+    height: 25px;
+    position: sticky;
+    width: 100%;
+
+    background: linear-gradient(0deg, transparent 0%, var(--chat-bg));
+
+    top: 0;
+}
+.chat .chat-messages .top-fade > div{
+    width: 100%;
+    height: 25px;
+    content: "";
+}
+.chat .chat-messages .chat-message{
+    margin: 2px 0;
+    width: 90%;
+    border-radius: 8px;
+    background-color: #676767;
+}
+.chat .chat-messages .chat-message.me{
+    background-color: var(--theme-color);
+}
+.chat .chat-messages .chat-message-player{
+    font-weight: normal;
+    font-size: 14px;
+    display: block;
+    color: #b9b9b9;
+    text-align: left;
+    margin-left: 10px;
+    margin-top: 5px;
+}
+.chat .chat-messages .chat-message-text{
+    display: block;
+    /*text-align: right;*/
+    width: 90%;
+    /*text-justify: auto;*/
+    text-align: justify;
+    margin-left: 10px;
+    margin-bottom: 3px;
+}
+
+.chat .chat-input{
+    flex: 0 0 auto;
+    position: relative;
+    /*margin: 10px 0;*/
+    padding: 10px 0;
+    width: 100%;
+
+    background-color: rgba(26,26,26,0.78);
+}
+.chat .chat-input input{
+    width: 80%;
+    padding: 6px;
+    border-radius: 5px;
+    background-color: rgba(154,154,154,0.78);
+    border: none;
+    color: white;
+}
+.chat .chat-input input::placeholder{
+    color: #cbcbcb;
+}
