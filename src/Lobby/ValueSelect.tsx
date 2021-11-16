@@ -1,7 +1,7 @@
 import { Component } from "react";
 import "./ValueSelect.css"
-import minus from "../imgs/minus.png"
-import plus from "../imgs/plus.png"
+import minus from "../assets/imgs/minus.png"
+import plus from "../assets/imgs/plus.png"
 type IProps = {
   value: number;
   onChange: (value: number) => void;

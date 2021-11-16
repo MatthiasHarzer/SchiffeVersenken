@@ -1,5 +1,5 @@
 import { Component } from "react";
-import win_lose from "../imgs/lose_win.webp";
+import win_lose from "../assets/imgs/lose_win.webp";
 import "./end.css"
 
 type IProps = {

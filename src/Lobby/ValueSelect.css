@@ -1,15 +1,23 @@
 .value-select{
-    display: inline-block;
+
     position: relative;
     width: 100%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+
 }
 .value-select label{
     display: block;
-    margin-bottom: 5px;
+    margin: 5px;
     text-align: left;
-    padding-left: 15%;
+    flex: 1 0 auto;
+    /*float: left;*/
+    /*padding-left: 15%;*/
 }
 .value-select div{
+    flex: 0 1 auto;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -18,6 +26,7 @@
     margin: 0 10px;
     font-weight: bold;
     font-size: 18px;
+    width: 15px;
 }
 .value-select div button{
     box-shadow: none;

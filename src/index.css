@@ -22,8 +22,14 @@ code {
     background: #cc3a24;
     color: white;
 }
+@font-face {
+    font-family: 'Poppins';
+    src: local('Sanchez-Regular'),url(./assets/Poppins-Medium.ttf) format('truetype');
+}
 *{
     transition: background-color 0.3s ease-in-out;
+    font-family: "Poppins", sans-serif;
+    /*font-weight: 100;*/
 }
 
 

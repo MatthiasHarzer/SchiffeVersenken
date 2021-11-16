@@ -2,10 +2,10 @@ import { Component } from "react";
 import "./Lobby.css";
 import { network } from "../network";
 import { game } from "../game";
-import { copyToClipboard } from "../util";
+import isDev, { copyToClipboard } from "../util";
 // @ts-ignore
-import copy from "../imgs/copy.png";
-import back from "../imgs/back.png";
+import copy from "../assets/imgs/copy.png";
+import back from "../assets/imgs/back.png";
 import { ValueSelect } from "./ValueSelect";
 import { settings } from "cluster";
 
@@ -27,9 +27,6 @@ type IState = {
 }
 
 export class Lobby extends Component<any, IState> {
-
-
-
     componentDidMount() {
         // * Set default settings
 
@@ -88,7 +85,6 @@ export class Lobby extends Component<any, IState> {
         network.onReceive("KICK", this.leaveGame);
 
         network.onReceive("SETTINGS", data => {
-
             data?.settings && data?.settings?.length > 0 && this.setState({
                 settings: data.settings
             });
@@ -177,7 +173,7 @@ export class Lobby extends Component<any, IState> {
                         </div>
                         {this.state?.isHost &&
                         <div className={"host-controls"}>
-                          <button disabled={this.state?.players && this.state?.players.length < 2} onClick={() => {
+                          <button disabled={this.state?.players && this.state?.players.length < 2 && !isDev()} onClick={() => {
                               network.sendData({
                                   type: "GAME_STATE",
                                   state: "PLACE"
